@@ -43,7 +43,7 @@ VALIDATE "Starting Nginx"
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE " Removing Existing content "
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE "Downloading the front end code"
 
 cd /usr/share/nginx/html

@@ -74,7 +74,7 @@ VALIDATE " Installing the dependencies "
 
 
 cp /home/ec2-user/ExpenseShell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
-VALIDATE $? "Copied backend service"
+VALIDATE  "Copied backend service"
 
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE " reloading the daemon"

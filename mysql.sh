@@ -45,7 +45,7 @@ systemctl start mysqld &>>$LOGFILE
 VALIDATE "Starting  the server"
 
 
-mysql -h db.hostname -uroot -p${mysql_root_password} -e 'show databases:' &>>$LOGFILE
+mysql -h 172.31.26.155 -uroot -p${mysql_root_password} -e 'show databases:' &>>$LOGFILE
 
 if [ $? -ne 0 ]
     then

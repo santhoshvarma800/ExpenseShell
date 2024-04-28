@@ -59,15 +59,15 @@ if [ $? -ne 0 ]
 fi
 
 
-mkdir /app &>>$LOGFILE
+mkdir -p /app &>>$LOGFILE
 VALIDATE " Creating Directory "
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE " Downloading the backend code "
 
 cd /app
-rm -rf /app *
-unzip /tmp/backend.zip
+rm -rf /app/*
+unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE " Extracted the backend code  "
 
 cp /home/ec2-user/ExpenseShell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE

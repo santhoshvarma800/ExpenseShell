@@ -16,7 +16,7 @@ echo " please enter your DB password "
 read -s mysql_root_password
 
 
-if [$USERID -ne 0]
+if [ $USERID -ne 0 ]
   then
        echo " please execute with root user access "
        exit 1

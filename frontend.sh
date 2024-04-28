@@ -11,7 +11,7 @@ Y="\e[33m"
 B="\e[34m"
 N="\e[0m"
 
-if [$USERID -ne 0]
+if [ $USERID -ne 0 ]
   then
        echo " please execute with root user access "
        exit 1

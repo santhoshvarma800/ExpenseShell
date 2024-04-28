@@ -48,7 +48,7 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE " Installing Nodejs "
 
 
-id expense
+id expense &>>$LOGFILE
 
 if [ $? -ne 0 ]
     then
@@ -58,9 +58,8 @@ if [ $? -ne 0 ]
         echo " user is already existed"
 fi
 
-
 mkdir -p /app &>>$LOGFILE
-VALIDATE " Creating Directory "
+VALIDATE " Creating app Directory "
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE " Downloading the backend code "
@@ -68,26 +67,23 @@ VALIDATE " Downloading the backend code "
 cd /app
 rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOGFILE
-VALIDATE " Extracted the backend code  "
-
-cp /home/ec2-user/ExpenseShell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
-VALIDATE $? "Copied backend service"
+VALIDATE "Extracted backend code"
 
 npm install &>>$LOGFILE
 VALIDATE " Installing the dependencies "
 
 
+cp /home/ec2-user/ExpenseShell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+VALIDATE $? "Copied backend service"
+
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE " reloading the daemon"
-
 
 systemctl start backend &>>$LOGFILE
 VALIDATE " starting the backend server "
 
-
 systemctl enable backend &>>$LOGFILE
 VALIDATE " Enabled the backend "
-
 
 dnf install mysql -y &>>$LOGFILE
 VALIDATE " Installing mysql client "
